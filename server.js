@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
             description: "Test Description comes here 1"
         }
     ];
-    res.render('index', { text: 'Hello', articles });
+    res.render('articles/index', { text: 'Hello', articles });
 });
 
 // Define the port and listen
