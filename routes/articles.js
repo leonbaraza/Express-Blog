@@ -8,8 +8,8 @@ router.get('/new', (req, res) => {
 });
 
 // Display a single article
-router.get('/:id', async (req, res) => {
-    const article = await Article.findById(req.params.id);
+router.get('/:slug', async (req, res) => {
+    const article = await Article.findOne({ slug:req.params.slug });
     console.log(article);
     if (article == null){
         res.redirect('/');
@@ -30,7 +30,7 @@ router.post('/', async (req, res) => {
         // assigns an id to the new article
         article = await article.save();
         // redirect to that article
-        res.redirect(`/articles/${article.id}`)
+        res.redirect(`/articles/${article.slug}`)
     } catch (e) {
         console.log(e);
         res.render('articles/new', {article: article})
