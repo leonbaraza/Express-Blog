@@ -9,8 +9,8 @@ mongoose.connect('mongodb://localhost/blog', { useNewUrlParser: true, useUnified
 // Set view engine
 app.set('view engine', 'ejs');
 
-// use routes
-app.use('/articles', articleRouter);
+// In order to access all the options from the form use the below code.
+app.use(express.urlencoded({ extended: false }));
 
 app.get('/', (req, res) => {
     articles = [
@@ -27,6 +27,9 @@ app.get('/', (req, res) => {
     ];
     res.render('articles/index', { text: 'Hello', articles });
 });
+
+// use routes
+app.use('/articles', articleRouter);
 
 // Define the port and listen
 const PORT = process.env.PORT || 3000;
