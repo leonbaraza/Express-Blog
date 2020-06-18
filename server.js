@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const articleRouter = require('./routes/articles');
 const Article = require('./models/Article');
-
+const methodOverride = require('method-override');
 
 const app = express();
 mongoose.connect('mongodb://localhost/blog', { 
@@ -16,6 +16,9 @@ app.set('view engine', 'ejs');
 
 // In order to access all the options from the form use the below code.
 app.use(express.urlencoded({ extended: false }));
+
+// user override
+app.use(methodOverride('_method'));
 
 app.get('/', async (req, res) => {
     articles = await Article.find().sort({

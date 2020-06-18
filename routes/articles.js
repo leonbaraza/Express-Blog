@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Article = require('./../models/Article');
+const { findById } = require('./../models/Article');
 
 // Routes
 router.get('/new', (req, res) => {
@@ -35,6 +36,11 @@ router.post('/', async (req, res) => {
         console.log(e);
         res.render('articles/new', {article: article})
     }
+});
+
+router.delete('/:id', async (req, res) =>{
+    await Article.findByIdAndDelete(req.params.id);
+    res.redirect('/');
 });
 
 module.exports = router;
