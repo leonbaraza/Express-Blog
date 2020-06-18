@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const articleRouter = require('./routes/articles');
+const Article = require('./models/Article');
 
 
 const app = express();
@@ -12,19 +13,10 @@ app.set('view engine', 'ejs');
 // In order to access all the options from the form use the below code.
 app.use(express.urlencoded({ extended: false }));
 
-app.get('/', (req, res) => {
-    articles = [
-        {
-            title: "Test Article",
-            createdAt: new Date(),
-            description: "Test Description comes here"
-        },
-        {
-            title: "Test Article 1",
-            createdAt: new Date(),
-            description: "Test Description comes here 1"
-        }
-    ];
+app.get('/', async (req, res) => {
+    articles = await Article.find().sort({
+        createdAt: 'desc'
+    });
     res.render('articles/index', { text: 'Hello', articles });
 });
 
