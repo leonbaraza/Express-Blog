@@ -2,9 +2,12 @@ const express = require('express');
 
 const app = express();
 
+// Set view engine
+app.set('view engine', 'ejs');
 
+// Routes
 app.get('/', (req, res) => {
-    res.send('Hello');
+    res.render('index');
 });
 
 
