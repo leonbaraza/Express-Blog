@@ -5,7 +5,11 @@ const Article = require('./models/Article');
 
 
 const app = express();
-mongoose.connect('mongodb://localhost/blog', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost/blog', { 
+    useNewUrlParser: true, 
+    useUnifiedTopology: true, 
+    useCreateIndex: true 
+});
 
 // Set view engine
 app.set('view engine', 'ejs');
@@ -16,7 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 app.get('/', async (req, res) => {
     articles = await Article.find().sort({
         createdAt: 'desc'
-    });
+    }); 
     res.render('articles/index', { text: 'Hello', articles });
 });
 
