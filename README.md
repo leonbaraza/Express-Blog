@@ -8,5 +8,8 @@ A complete Blog developed using Node.js, MongoDB, and Express by building out a 
 - The structure of a full stack application
 - How to setup database hooks
 
-## Additional in future
-A blog API
+## API Routes
+Definition
+
+1. GET /todos
+Gets all records from the database

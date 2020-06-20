@@ -18,7 +18,7 @@ router.get('/edit/:id', async (req, res) => {
 // Display a single article
 router.get('/:slug', async (req, res) => {
     const article = await Article.findOne({ slug: req.params.slug });
-    console.log(article);
+    // console.log(article);
     if (article == null) {
         res.redirect('/');
     }
