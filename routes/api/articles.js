@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Article = require('../../models/Article');
+const { route } = require('../articles');
 
 // -------------------------- Get all articles -----------------------------------
 router.get('/', async(req, res) => {
@@ -27,6 +28,15 @@ router.get('/id/:id', async(req, res) => {
         res.status(400).json({msg: `No member with the id as ${req.params.id}`})
     }
     res.json(article);
+});
+
+// --------------------------- Delete an Article -------------------------------------
+router.delete('/:id', async(req, res) => {
+    const msg = await Article
+    .findByIdAndDelete(req.params.id)
+    .then(() => `Article with the id of ${req.params.id} has been deleted`);
+
+    res.json({msg});
 });
 
 
