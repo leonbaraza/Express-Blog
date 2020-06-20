@@ -11,5 +11,20 @@ A complete Blog developed using Node.js, MongoDB, and Express by building out a 
 ## API Routes
 Definition
 
-1. GET /todos
-Gets all records from the database
+1. Gets all records from the database
+GET /api/articles/
+
+2. Get a single article using
+- Slug
+GET /api/articles/:slug
+- id
+GET /api/articles/:id
+
+3. Delete an article
+DELETE /api/articles/:id
+
+4. Create a new Article
+POST /api/articles/
+
+5. Update an existing article by id
+PUT /api/articles/:id
